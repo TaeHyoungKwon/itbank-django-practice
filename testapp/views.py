@@ -27,3 +27,13 @@ def test_file_io(request, text=None):
 def html_link(request):
     data = {"data": ["test", "tag/1", "test_file_io"]}
     return render(request, 'testapp/html_link.html', data)
+
+
+def login(request):
+    data = {"data": ["test", "tag/1", "test_file_io"]}
+    if request.method == 'GET':
+        return render(request, "testapp/html_link.html", data)
+    else:
+        id = request.POST.get('id')
+        pw = request.POST.get('password')
+        return render(request, "testapp/home.html", {"id": id, "password": pw})

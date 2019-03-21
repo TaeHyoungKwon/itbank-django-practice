@@ -7,11 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    {% for link in data %}
-    <a href="/testapp/{{ link }}"> {{ link }}</a>
-    {% endfor %}
-    <form action="/testapp/login/" method="POST">
-      {% csrf_token %}
+    <form action="/testapp/login/">
       <input type="text" name="id" />
       <input type="text" name="password" />
       <button type="submit">전송</button>
