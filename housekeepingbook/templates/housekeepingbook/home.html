@@ -1,0 +1,14 @@
+<form action="http://127.0.0.1:8000/myacc/" method="GET" id="acc">
+  <select name="type" form="acc">
+    <option value="all">전체</option>
+    <option value="in">수입</option>
+    <option value="out">지출</option>
+  </select>
+  <input type="number" name="amount" value="0" />
+  <button type="submit">조회</button>
+</form>
+
+{% for d in data%}
+
+<p>{{ d.contents }} - {{ d.income }} - {{ d.expense }}</p>
+{% endfor %}

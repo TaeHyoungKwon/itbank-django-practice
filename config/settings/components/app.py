@@ -8,11 +8,13 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'django_extensions',
 ]
 
 PROJECT_APPS = [
     'htmlapp',
-    'testapp'
+    'testapp',
+    'housekeepingbook'
 
 ]
 
