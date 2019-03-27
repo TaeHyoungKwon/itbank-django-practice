@@ -1,10 +1,13 @@
 from django.urls import path
 from . import views
 
+
+app_name = "housekeepingbook"
+
 urlpatterns = [
-    path('', views.index),
-    path('<str:acc_type>', views.index),
-    path('income_list/', views.income_list),
-    path('expense_list/', views.expense_list),
-    path('list/', views.list),
+    path('list/', views.hkb_list, name="list"),
+    path('create/', views.hkb_create),
+    path('<int:id>/', views.hkb_detail, name="detail"),
+    path('<int:id>/delete/', views.hkb_delete, name="delete"),
+    path('<int:id>/update/', views.hkb_update, name="update")
 ]

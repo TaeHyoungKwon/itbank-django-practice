@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<h1>You wanna delete?</h1>
+
+<form action="." method="POST">{% csrf_token %}
+    <button type="submit" value='YES'> YES </button>
+</form>
+<a href="{% url 'housekeepingbook:detail' object.id %}"><button type="submit" value='NO'>NO</button></a>
+
+{% endblock %}

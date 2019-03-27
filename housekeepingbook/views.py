@@ -1,45 +1,66 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from .models import HouseKeepingBook
+from .forms import HouseKeepingBookForm
 
 
-def index(request):
-    acc_type = request.GET.get('type')
-    amount = request.GET.get('amount')
-    print(amount)
+def hkb_create(request):
+    form = HouseKeepingBookForm(request.POST or None)
 
-    if acc_type == 'out' and amount != "0":
-        obj = HouseKeepingBook.objects.filter(expense__gt=int(amount))
-    elif acc_type == 'in' and amount != "0":
-        obj = HouseKeepingBook.objects.filter(income__gt=int(amount))
-    else:
-        obj = HouseKeepingBook.objects.all()
-
+    if form.is_valid():
+        form.save()
+        form = HouseKeepingBook()
     context = {
-        "data": obj
+        'form': form
     }
-    return render(request, "housekeepingbook/home.html", context)
+    return render(request, 'housekeepingbook/create.html', context)
 
 
-def income_list(request):
-    obj = HouseKeepingBook.objects.filter(income__gt=0)
+def hkb_detail(request, id):
+    obj = get_object_or_404(HouseKeepingBook, id=id)
+    context = {
+        'object': obj
+    }
+
     print(obj)
-    context = {
-        "data": obj
-    }
-    return render(request, "housekeepingbook/home.html", context)
+
+    return render(request, 'housekeepingbook/detail.html', context)
 
 
-def expense_list(request):
-    obj = HouseKeepingBook.objects.filter(expense__gt=0)
-    context = {
-        "data": obj
-    }
-    return render(request, "housekeepingbook/home.html", context)
-
-
-def list(request):
+def hkb_list(request):
     obj = HouseKeepingBook.objects.all()
     context = {
-        "data": obj
+        'object_list': obj
     }
-    return render(request, "housekeepingbook/home.html", context)
+
+    return render(request, 'housekeepingbook/list.html', context)
+
+
+def hkb_delete(request, id):
+    obj = get_object_or_404(HouseKeepingBook, id=id)
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect("housekeepingbook:list")
+
+    context = {
+        'object': obj
+    }
+
+    return render(request, 'housekeepingbook/delete.html', context)
+
+
+def hkb_update(request, id):
+    obj = get_object_or_404(HouseKeepingBook, id=id)
+    form = HouseKeepingBookForm(request.POST or None, instance=obj)
+
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.save()
+        return HttpResponseRedirect(obj.get_absolute_url())
+
+    context = {
+        "object": obj,
+        "form": form
+    }
+    return render(request, "housekeepingbook/form.html", context)

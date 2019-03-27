@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class HouseKeepingBook(models.Model):
@@ -10,3 +11,6 @@ class HouseKeepingBook(models.Model):
 
     def __str__(self):
         return str(self.contents)
+
+    def get_absolute_url(self):
+        return reverse("housekeepingbook:detail", kwargs={"id": self.pk})
