@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+    <div class="column content">
+
+        <div class="mt-5 col-md-12 order-md-12 mb-12">
+
+            <h1>You wanna delete?</h1>
+
+            <div>
+                <form action="{% url 'namecard:delete' object.id %}" method="POST">{% csrf_token %}
+
+                    <a href="{% url "namecard:delete" object.id %}"> <button class="btn btn-danger">삭제</button></a>
+                </form>
+                <a href="{% url 'namecard:detail' object.id %}"> <button class="btn btn-primary">취소</button></a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}

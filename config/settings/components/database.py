@@ -1,18 +1,24 @@
 if ENV == 'development':
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'web_db',  # DB명
+            'USER': 'root',  # 데이터베이스 계정
+            'PASSWORD': '',  # 계정 비밀번호
+            'HOST': '127.0.0.1',  # 데이테베이스 주소(IP)
+            'PORT': '3306',  # 데이터베이스 포트(보통은 3306)
         }
+
     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': "ttobongee",
-            'USER': 'ttobongee',
-            'PASSWORD': 'ttobongee1234!',
-            'PORT': '5432',
-            'HOST': "ttobongee.cow90dnrnqjv.ap-northeast-2.rds.amazonaws.com"
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'web_db',  # DB명
+            'USER': 'root',  # 데이터베이스 계정
+            'PASSWORD': '',  # 계정 비밀번호
+            'HOST': 'http://127.0.0.1',  # 데이테베이스 주소(IP)
+            'PORT': '3306',  # 데이터베이스 포트(보통은 3306)
         }
+
     }

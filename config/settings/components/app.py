@@ -9,12 +9,14 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'crispy_forms'
 ]
 
 PROJECT_APPS = [
     'htmlapp',
     'testapp',
-    'housekeepingbook'
+    'housekeepingbook',
+    'namecard'
 
 ]
 

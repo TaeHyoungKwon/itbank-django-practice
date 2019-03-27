@@ -1,0 +1,53 @@
+{% extends 'common/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid text-center">
+    <div class="column content">
+
+        <div class="mx-auto mt-5 col-md-6 order-md-6 mb-6">
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.name | as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.company | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.comp_part | as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.position | as_crispy_field}}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.gender | as_crispy_field}}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.age | as_crispy_field}}
+                    </div>
+                </div>
+                {{ form.phone | as_crispy_field }}
+                {{ form.comp_number | as_crispy_field }}
+                {{ form.fax_number | as_crispy_field }}
+                {{ form.remark | as_crispy_field }}
+
+                <a href="{% url "namecard:update" object.id %}"> <button class="btn btn-primary">수정</button></a>
+                <a href="{% url "namecard:detail" object.id %}"> <button class="btn btn-danger">취소</button></a>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

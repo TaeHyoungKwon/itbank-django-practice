@@ -2,12 +2,40 @@
 
 {% block content %}
 
-{% for obj in object_list %}
-<ul>
-  <li>
-    <a href="{{ obj.get_absolute_url }}">{{ obj.contents }}</a>
-  </li>
-</ul>
-{% endfor %}
+<div class="container-fluid text-center">
+  <div class="column content">
+
+    <div class="mt-5 col-md-12 order-md-12 mb-12">
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">내용</th>
+            <th scope="col">지출</th>
+            <th scope="col">수입</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for obj in object_list %}
+          <tr>
+            <th scope="row">{{obj.id}}</th>
+            <a href="#">dsfsdf</a>
+            <a href="{{obj.get_absolute_url}}">
+              <td>{{obj.contents}}</td>
+            </a>
+            <td>{{obj.expense}}</td>
+            <td>{{obj.income}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+
+
 
 {% endblock %}

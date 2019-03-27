@@ -1,0 +1,42 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+    <div class="column content">
+
+        <div class="mt-5 col-md-12 order-md-12 mb-12">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">이름</th>
+                        <th scope="col">회사명</th>
+                        <th scope="col">부서</th>
+                        <th scope="col">직위</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <th scope="row">{{obj.id}}</th>
+
+                        <td><a href="{{obj.get_absolute_url}}">{{obj.name}}</a></td>
+
+                        <td>{{obj.company}}</td>
+                        <td>{{obj.comp_part}}</td>
+                        <td>{{obj.position}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

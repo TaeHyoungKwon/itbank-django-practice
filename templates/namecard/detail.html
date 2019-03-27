@@ -1,0 +1,34 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid text-center">
+    <div class="column content">
+
+        <div class="mt-5 col-md-12 order-md-12 mb-12">
+
+            <div class="card mx-auto text-white bg-info mb-3" style="max-width: 18rem;text-align:center">
+                <div class=" card-header">{{object.name}} | {{object.create_date | date:"SHORT_DATE_FORMAT"}}</div>
+                <div class="card-body">
+                    <h5 class="card-title">{{object.company}}</h5>
+                    <p class="card-text">{{object.comp_part}}</p>
+                    <p class="card-text">{{ object.position }}</p>
+                    <p class="card-text">{{ object.age }}</p>
+                    <p class="card-text">{{ object.gender }}</p>
+                    <p class="card-text">{{ object.phone }}</p>
+                    <p class="card-text">{{ object.comp_number }}</p>
+                    <p class="card-text">{{object.fax_number}}</p>
+                    <p class="card-text">{{object.remark}}</p>
+                </div>
+            </div>
+            <a href="{% url "namecard:update" object.id %}"> <button class="btn btn-primary">수정</button></a>
+            <a href="{% url "namecard:delete" object.id %}"><button class="btn btn-danger">삭제</button></a>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
